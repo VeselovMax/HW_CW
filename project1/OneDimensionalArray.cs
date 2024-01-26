@@ -1,56 +1,13 @@
 using System;
 
-namespace OneDimensionalArray
+namespace project1
 {
-    internal class Program
-    {
-        static void Main(string[] args)
-        {
-            Console.Write("Создать массив не случайно (Да или Нет)? ");
-            oneDimensionalArray array;
-            if (Console.ReadLine() == "Да")
-            {
-                Console.Write("Введите длину массива: ");
-                array = new oneDimensionalArray(true, int.Parse(Console.ReadLine()));
-            }
-            else
-            {
-                Console.Write("Введите длину массива: ");
-                array = new oneDimensionalArray(false, int.Parse(Console.ReadLine()));
-            }
-            Console.WriteLine("Что вы хотите вывести? Напишите Среднее значение, или Удалить больше 100, или Удалить повторы, или Вывести массив, или Пересоздать массив: ");
-            while (true)
-            {
-                string question = Console.ReadLine();
-                if (question == "Среднее значение") 
-                {
-                    Console.WriteLine("Среднее значение: " + array.getAverageArrayValue());
-                }
-                else if (question == "Удалить больше 100")
-                {
-                    array.deleteBiggerThan100();
-                    Console.WriteLine("Готово!");
-                }
-                else if (question == "Удалить повторы")
-                {
-                    array.deleteRepeating();
-                    Console.WriteLine("Готово!");
-                }
-                else if (question == "Вывести массив")
-                {
-                    array.printArray();
-                }
-                else if (question == "Пересоздать массив")
-                {
-                    array.fillArray(false, 1);
-                }
-            }
-        }
-    }
     class oneDimensionalArray
     {
+
         private bool isNotRandom = false;
         private int[] array;
+        
         public oneDimensionalArray(bool isNotRandom, int length)
         {
             array = new int[length];
@@ -63,6 +20,7 @@ namespace OneDimensionalArray
                 getRandomArray(array);
             }
         }
+
         private int[] getRandomArray(int[] array)
         {
             Random random = new Random();
@@ -73,6 +31,7 @@ namespace OneDimensionalArray
             }
             return array;
         }
+
         private int[] getArray(int[] array)
         {
             for (int i = 0; i < array.Length; i++)
@@ -81,6 +40,7 @@ namespace OneDimensionalArray
             }
             return array;
         }
+
         public void fillArray(bool isNotRandom, int length)
         {
             Console.Write("Пересоздать массив не случайно (Да или Нет)? ");
@@ -108,6 +68,7 @@ namespace OneDimensionalArray
                 getRandomArray(array);
             }
         }
+        
         public double getAverageArrayValue()
         {
             double sum = 0;
@@ -117,6 +78,7 @@ namespace OneDimensionalArray
             }
             return sum / array.Length;
         }
+
         public int[] deleteBiggerThan100()
         {
             int count = 0;
@@ -140,6 +102,7 @@ namespace OneDimensionalArray
             array = new_array;
             return new_array;
         }
+
         public int[] deleteRepeating()
         {
             int count = 0;
@@ -180,6 +143,7 @@ namespace OneDimensionalArray
             array = new_array;
             return new_array;
         }
+
         public void printArray()
         {
             for (int i = 0; i < array.Length; i++)

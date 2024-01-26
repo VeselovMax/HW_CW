@@ -1,54 +1,11 @@
 using System;
 
-namespace TwoDmensionalArray
+namespace project1
 {
-    internal class Program
-    {
-        static void Main(string[] args)
-        {
-            Console.Write("Создать массив не случайно (Да или Нет)? ");
-            twoDimensionalArray array;
-            if (Console.ReadLine() == "Да")
-            {
-                Console.Write("Введите длину массива: ");
-                int length = int.Parse(Console.ReadLine());
-                Console.Write("Введите ширину массива: ");
-                array = new twoDimensionalArray(true, length, int.Parse(Console.ReadLine()));
-            }
-            else
-            {
-                Console.Write("Введите длину массива: ");
-                int length = int.Parse(Console.ReadLine());
-                Console.Write("Введите ширину массива: ");
-                array = new twoDimensionalArray(false, length, int.Parse(Console.ReadLine()));
-            }
-            Console.WriteLine("Что вы хотите вывести? Напишите Среднее значение, или Вывести элементы чётных в обратном, или Вывести массив, или Пересоздать массив: ");
-            while (true)
-            {
-                string question = Console.ReadLine();
-                if (question == "Среднее значение")
-                {
-                    Console.WriteLine("Среднее значение: " + array.getAverageTwoDimensionalArrayValue());
-                }
-                else if (question == "Вывести элементы чётных в обратном")
-                {
-                    array.getTwoDimensionalArrayAsSanke();
-                    array.printTwoDimensionalArray();
-                }
-                else if (question == "Вывести массив")
-                {
-                    array.printTwoDimensionalArray();
-                }
-                else if (question == "Пересоздать массив")
-                {
-                    array.fillArray(false, 1, 2);
-                }
-            }
-        }
-    }
     class twoDimensionalArray
     {
         private int[,] array;
+
         public twoDimensionalArray(bool isNotRandom, int arrayLength, int arrayWidth)
         {
             if (isNotRandom)
@@ -65,6 +22,7 @@ namespace TwoDmensionalArray
                 GetTwoDimensionalArrayRandom(array);
             }
         }
+
         private int[,] GetTwoDimensionalArray(int[,] array)
         {
             for (int i = 0; i < array.GetLength(0); i++)
@@ -76,6 +34,7 @@ namespace TwoDmensionalArray
             }
             return array;
         }
+
         private int[,] GetTwoDimensionalArrayRandom(int[,] array)
         {
             Random random = new Random();
@@ -88,6 +47,7 @@ namespace TwoDmensionalArray
             }
             return array;
         }
+
         public void fillArray(bool isNotRandom, int arrayLength, int arrayWidth)
         {
             Console.Write("Пересоздать массив не случайно (Да или Нет)? ");
@@ -122,6 +82,7 @@ namespace TwoDmensionalArray
                 GetTwoDimensionalArrayRandom(array);
             }
         }
+        
         public int getAverageTwoDimensionalArrayValue()
         {
             int sum = 0;
@@ -134,6 +95,7 @@ namespace TwoDmensionalArray
             }
             return sum / array.Length;
         }
+
         public int[,] getTwoDimensionalArrayAsSanke()
         {
             int[,] newArray = new int[array.GetLength(0), array.GetLength(1)];
@@ -156,6 +118,7 @@ namespace TwoDmensionalArray
             array = newArray;
             return newArray;
         }
+
         public void printTwoDimensionalArray()
         {
             for (int i = 0; i < array.GetLength(0); i++)

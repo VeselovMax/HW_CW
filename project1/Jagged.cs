@@ -1,60 +1,11 @@
 using System;
 
-
-namespace Jagged
+namespace project1
 {
-    internal class Program
-    {
-        static void Main(string[] args)
-        {
-            Console.Write("Создать массив не случайно (Да или Нет)? ");
-            jagged array;
-            if (Console.ReadLine() == "Да")
-            {
-                Console.Write("Введите длину массива: ");
-                array = new jagged(true, int.Parse(Console.ReadLine()));
-            }
-            else
-            {
-                Console.Write("Введите длину массива: ");
-                array = new jagged(false, int.Parse(Console.ReadLine()));
-            }
-            Console.WriteLine("Что вы хотите вывести? Напишите Среднее значение, или Средние значения массивов, или Изменить чётные на произведение, или Вывести массив, или Пересоздать массив: ");
-            while (true)
-            {
-                string question = Console.ReadLine();
-                if (question == "Среднее значение")
-                {
-                    Console.WriteLine("Среднее значение: " + array.getAverageJaggedValue());
-                }
-                else if (question == "Средние значения массивов")
-                {
-                    double[] averageArray =  array.getAverageArrayJaggedValue();
-                    for(int i = 0; i < averageArray.Length; i++)
-                    {
-                        Console.Write(averageArray[i] + " ");
-                    }
-                    Console.WriteLine(" ");
-                }
-                else if (question == "Изменить чётные на произведение")
-                {
-                    array.changeEvenInJagged();
-                    Console.WriteLine("Готово!");
-                }
-                else if (question == "Вывести массив")
-                {
-                    array.printJagged();
-                }
-                else if (question == "Пересоздать массив")
-                {
-                    array.fillArray(false, 1);
-                }
-            }
-        }
-    }
     class jagged
     {
         private int[][] array;
+
         public jagged(bool isNotRandom, int numberOfArrays)
         {
             if (isNotRandom)
@@ -70,6 +21,7 @@ namespace Jagged
                 getRandomJagged(array);
             }
         }
+
         private int[][] getJugged(int[][] array)
         {
             for (int i = 0; i < array.Length; i++)
@@ -84,6 +36,7 @@ namespace Jagged
             }
             return array;
         }
+
         private int[][] getRandomJagged(int[][] array)
         {
             Random random = new Random();
@@ -97,6 +50,7 @@ namespace Jagged
             }
             return array;
         }
+
         public void fillArray(bool isNotRandom, int numberOfArrays)
         {
             Console.Write("Создать массив не случайно (Да или Нет)? ");
@@ -124,6 +78,7 @@ namespace Jagged
                 getRandomJagged(array);
             }
         }
+
         public decimal getAverageJaggedValue()
         {
             int sum = 0;
@@ -138,6 +93,7 @@ namespace Jagged
             }
             return sum / length;
         }
+
         public double[] getAverageArrayJaggedValue()
         {
             double[] arrayJaggedAverageValue = new double[array.Length];
@@ -154,6 +110,7 @@ namespace Jagged
             }
             return arrayJaggedAverageValue;
         }
+
         public int[][] changeEvenInJagged()
         {
             for (int i = 0; i < array.Length; i++)
@@ -168,6 +125,7 @@ namespace Jagged
             }
             return array;
         }
+        
         public void printJagged()
         {
             for (int i = 0; i < array.Length; i++)
